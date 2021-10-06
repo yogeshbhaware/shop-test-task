@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addshop } from "../Redux/Actions/action";
+import { addshop } from "../../Redux/Actions/action";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { category , area } from "./DropDowns";
+import { category, area } from "./DropDowns";
 import { useHistory } from "react-router";
 
 function CreateShop() {
-  const history = useHistory()
+  const history = useHistory();
   let startDate = new Date();
   const dispatch = useDispatch();
   const {
@@ -18,16 +18,16 @@ function CreateShop() {
   } = useForm();
 
   const handleSubmited = (data) => {
-  
+
     console.log("I am data", data);
-    const shopsData ={
+    const shopsData = {
       ...data,
-      status:""
-    }
-    console.log(shopsData)
+      status: "",
+    };
+   
     dispatch(addshop(shopsData));
     reset();
-    history.push("/")
+    history.push("/");
   };
 
   return (
@@ -60,18 +60,11 @@ function CreateShop() {
               className="form-control"
               {...register("shoparea", { required: true })}
             >
-            {area.map((data, index) => {
-              
-              if(index !== 0 ){
-                return(
-                
-                <option value={data.value}>{data.text}</option>
-              )
-              }
-              
-                
-            })}
-              
+              {area.map((data, index) => {
+                if (index !== 0) {
+                  return <option value={data.value}>{data.text}</option>;
+                }
+              })}
             </select>
             {errors?.shoparea?.type === "required" && (
               <p style={{ color: "red" }}> Shop Area is Required</p>
@@ -84,17 +77,11 @@ function CreateShop() {
               className="form-control"
               {...register("shopcategory", { required: true })}
             >
-            {category.map((data,index) => {
-              if(index !== 0){
-                return(
-                
-                <option value={data.value}>{data.text}</option>
-                  
-                )
-              }
-              
-            })}
-              
+              {category.map((data, index) => {
+                if (index !== 0) {
+                  return <option value={data.value}>{data.text}</option>;
+                }
+              })}
             </select>
             {errors?.shopcategory?.type === "required" && (
               <p style={{ color: "red" }}> Shop Category is Required</p>
@@ -110,7 +97,9 @@ function CreateShop() {
               placeholder="Start Date"
               {...register("startdate", {
                 required: true,
-                validate: (value) => { startDate = value },
+                validate: (value) => {
+                  startDate = value;
+                },
               })}
             />
             {errors?.startdate?.type === "required" && (
@@ -146,13 +135,11 @@ function CreateShop() {
         <div class="form-group row">
           <div class="col-sm-10">
             <button type="submit" class="btn btn-primary">
-              Create Your Shop 
+              Create Your Shop
             </button>
           </div>
           <div class="form-group row">
-            <div class="col-sm-10">
-             
-            </div>
+            <div class="col-sm-10"></div>
           </div>
         </div>
       </form>

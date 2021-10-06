@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { TestReducer } from "./reducer";
+import { DataReducer, TestReducer } from "./reducer";
 
 export const reducer = combineReducers({
     shopData:TestReducer
